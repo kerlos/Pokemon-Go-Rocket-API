@@ -12,6 +12,9 @@ namespace PokemonGo.RocketAPI
         string GoogleRefreshToken { get; set; }
         string PtcPassword { get; }
         string PtcUsername { get; }
+        bool AutoTranferDuplicatePokemon { get; }
+        bool AutoEvolvePokemon { get; }
+        bool RecycleItem { get; }
 
         ICollection<KeyValuePair<AllEnum.ItemId, int>> itemRecycleFilter { get; set; }
     }

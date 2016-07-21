@@ -25,6 +25,9 @@ namespace PokemonGo.RocketAPI.Console
             PtcPassword = _jsonConfig.ptcPassword;
             DefaultLatitude = _jsonConfig.defaultLatitude;
             DefaultLongitude = _jsonConfig.defaultLongitude;
+            AutoTranferDuplicatePokemon = (bool)_jsonConfig.autoTranferDuplicatePokemon;
+            AutoEvolvePokemon = (bool)_jsonConfig.autoEvolvePokemon;
+            RecycleItem = (bool)_jsonConfig.recycleItem;
             itemRecycleFilter = ((IList<dynamic>)_jsonConfig.itemRecycleFilter).Select(item => new KeyValuePair<ItemId, int>((ItemId)Enum.Parse(typeof(ItemId), string.Format("Item{0}", item.name)), (int)item.amount)).ToArray();
         }
         public AuthType AuthType { get; }
@@ -32,6 +35,10 @@ namespace PokemonGo.RocketAPI.Console
         public string PtcPassword { get; set; }
         public double DefaultLatitude { get; }
         public double DefaultLongitude { get; }
+
+        public bool AutoTranferDuplicatePokemon { get; }
+        public bool AutoEvolvePokemon { get; }
+        public bool RecycleItem { get; }
 
         ICollection<KeyValuePair<ItemId, int>> ISettings.itemRecycleFilter
         {

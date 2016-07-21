@@ -38,9 +38,9 @@ namespace PokemonGo.RocketAPI.Logic
                 try
                 {
                     await _client.SetServer();
-                    //await EvolveAllPokemonWithEnoughCandy();
-                    await TransferDuplicatePokemon(true);
-                    await RecycleItems();
+                    if(_clientSettings.AutoEvolvePokemon) await EvolveAllPokemonWithEnoughCandy();
+                    if(_clientSettings.AutoTranferDuplicatePokemon) await TransferDuplicatePokemon(true);
+                    if(_clientSettings.RecycleItem) await RecycleItems();
                     await RepeatAction(5, async () => await ExecuteFarmingPokestopsAndPokemons(_client));
 
                     /*
