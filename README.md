@@ -42,3 +42,43 @@ Todo
 #Map Enums
 ```
 
+Config with json
+
+```json
+{
+  "authType": "Google",
+  "ptcUsername": "username",
+  "ptcPassword": "pw",
+  "defaultLatitude": 52.379189,
+  "defaultLongitude": 4.899431,
+  "autoTranferDuplicatePokemon": true,
+  "autoEvolvePokemon": false,
+  "recycleItem": true,
+  "itemRecycleFilter": [
+    {
+      "name": "PokeBall",
+      "amount": 70
+    },
+    {
+      "name": "GreatBall",
+      "amount": 100
+    },
+    {
+      "name": "Potion",
+      "amount": 10
+    },
+    {
+      "name": "Revive",
+      "amount": 30
+    },
+    {
+      "name": "SuperPotion",
+      "amount": 20
+    },
+    {
+      "name": "RazzBerry",
+      "amount": 80
+    }
+  ]
+}
+```
