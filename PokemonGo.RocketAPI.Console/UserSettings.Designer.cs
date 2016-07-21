@@ -25,42 +25,6 @@ namespace PokemonGo.RocketAPI.Console {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Google")]
-        public string AuthType {
-            get {
-                return ((string)(this["AuthType"]));
-            }
-            set {
-                this["AuthType"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("username")]
-        public string PtcUsername {
-            get {
-                return ((string)(this["PtcUsername"]));
-            }
-            set {
-                this["PtcUsername"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("pw")]
-        public string PtcPassword {
-            get {
-                return ((string)(this["PtcPassword"]));
-            }
-            set {
-                this["PtcPassword"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string GoogleRefreshToken {
             get {
@@ -73,25 +37,13 @@ namespace PokemonGo.RocketAPI.Console {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("52.379189")]
-        public double DefaultLatitude {
+        [global::System.Configuration.DefaultSettingValueAttribute("config.json")]
+        public string ConfigFile {
             get {
-                return ((double)(this["DefaultLatitude"]));
+                return ((string)(this["ConfigFile"]));
             }
             set {
-                this["DefaultLatitude"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4.899431")]
-        public double DefaultLongitude {
-            get {
-                return ((double)(this["DefaultLongitude"]));
-            }
-            set {
-                this["DefaultLongitude"] = value;
+                this["ConfigFile"] = value;
             }
         }
     }

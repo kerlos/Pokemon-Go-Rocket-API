@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using PokemonGo.RocketAPI.Exceptions;
-
+using System.IO;
 namespace PokemonGo.RocketAPI.Console
 {
     class Program

@@ -3,34 +3,41 @@ using PokemonGo.RocketAPI.Enums;
 using PokemonGo.RocketAPI.GeneratedCode;
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 using AllEnum;
-
+using Newtonsoft.Json;
+using System.Dynamic;
+using System.IO;
 namespace PokemonGo.RocketAPI.Console
 {
     public class Settings : ISettings
     {
-        public AuthType AuthType => (AuthType)Enum.Parse(typeof(AuthType), UserSettings.Default.AuthType);
-        public string PtcUsername => UserSettings.Default.PtcUsername;
-        public string PtcPassword => UserSettings.Default.PtcPassword;
-        public double DefaultLatitude => UserSettings.Default.DefaultLatitude;
-        public double DefaultLongitude => UserSettings.Default.DefaultLongitude;
+        private dynamic _jsonConfig;
+        private KeyValuePair<ItemId, int>[] itemRecycleFilter;
+        public Settings()
+        {
+            string jsonString = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, UserSettings.Default.ConfigFile));
+            _jsonConfig = JsonConvert.DeserializeObject<ExpandoObject>(jsonString);
+            AuthType = (AuthType)Enum.Parse(typeof(AuthType), _jsonConfig.authType);
+            PtcUsername = _jsonConfig.ptcUsername;
+            PtcPassword = _jsonConfig.ptcPassword;
+            DefaultLatitude = _jsonConfig.defaultLatitude;
+            DefaultLongitude = _jsonConfig.defaultLongitude;
+            itemRecycleFilter = ((IList<dynamic>)_jsonConfig.itemRecycleFilter).Select(item => new KeyValuePair<ItemId, int>((ItemId)Enum.Parse(typeof(ItemId), string.Format("Item{0}", item.name)), (int)item.amount)).ToArray();
+        }
+        public AuthType AuthType { get; }
+        public string PtcUsername { get; set; }
+        public string PtcPassword { get; set; }
+        public double DefaultLatitude { get; }
+        public double DefaultLongitude { get; }
 
         ICollection<KeyValuePair<ItemId, int>> ISettings.itemRecycleFilter
         {
             get
             {
-                //Type and amount to keep
-                return new[]
-                {
-                    new KeyValuePair<ItemId, int>(ItemId.ItemPokeBall, 70),
-                    new KeyValuePair<ItemId, int>(ItemId.ItemGreatBall, 100),
-                    new KeyValuePair<ItemId, int>(ItemId.ItemPotion, 10),
-                    new KeyValuePair<ItemId, int>(ItemId.ItemRevive, 30),
-                    new KeyValuePair<ItemId, int>(ItemId.ItemSuperPotion, 20),
-                    new KeyValuePair<ItemId, int>(ItemId.ItemRazzBerry, 80)
-                };
+                return itemRecycleFilter;
             }
 
             set
