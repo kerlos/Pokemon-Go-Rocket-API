@@ -38,10 +38,10 @@ namespace PokemonGo.RocketAPI.Logic
                 try
                 {
                     await _client.SetServer();
-                    await EvolveAllPokemonWithEnoughCandy();
+                    //await EvolveAllPokemonWithEnoughCandy();
                     await TransferDuplicatePokemon(true);
                     await RecycleItems();
-                    await RepeatAction(10, async () => await ExecuteFarmingPokestopsAndPokemons(_client));
+                    await RepeatAction(5, async () => await ExecuteFarmingPokestopsAndPokemons(_client));
 
                     /*
                 * Example calls below
@@ -108,7 +108,7 @@ namespace PokemonGo.RocketAPI.Logic
                 while (caughtPokemonResponse.Status == CatchPokemonResponse.Types.CatchStatus.CatchMissed);
 
                 Logger.Write(caughtPokemonResponse.Status == CatchPokemonResponse.Types.CatchStatus.CatchSuccess ? $"We caught a {pokemon.PokemonId} with CP {encounterPokemonResponse?.WildPokemon?.PokemonData?.Cp} using a {pokeball}" : $"{pokemon.PokemonId} with CP {encounterPokemonResponse?.WildPokemon?.PokemonData?.Cp} got away while using a {pokeball}..", LogLevel.Info);
-                await Task.Delay(15000);
+                await Task.Delay(5000);
             }
         }
         
